@@ -29,10 +29,10 @@ class LoginView(generics.GenericAPIView):
 
         user = authenticate(username=username, password=password)
         if user:
-            token = RefreshToken.for_user(user)
+            refresh = RefreshToken.for_user(user)
             return Response({
                             'refresh': str(refresh),
-                             'access': str('refresk.access_token'),
+                             'access': str(refresh.access_token),
                              'email': user.username},
                              status=status.HTTP_200_OK)
         
